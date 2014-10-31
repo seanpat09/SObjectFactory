@@ -45,3 +45,15 @@ public class AccountFactory extends SObjectFactory
     }
 }
 ```
+
+Then you can call all of the abstracted methods:
+```
+AccountFactory factory = new AccountFactory();
+List<Account> accountInstances = factory.buildRecords(10); 
+
+List<Account> insertedAccounts = factory.buildAndInsertRecords(10);
+
+Account accountInstance = (Account)factory.buildRecord();
+
+Account insertedAccount = (Account)factory.buildAndInsertRecord();
+```
