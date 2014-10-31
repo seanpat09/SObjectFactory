@@ -39,14 +39,9 @@ and now you only have to created one class and implement one method:
 @isTest
 public class AccountFactory extends SObjectFactory
 {
-    public List<SObject> buildRecords( Integer numRecords )
+    public SObject buildRecordWithData()
     {
-        List<Account> testAccounts = new List<Account>();
-        for( Integer i = 0; i < numRecords; i++ )
-        {
-            testAccounts.add( new Account( Name = 'Test Account ' + i ) );
-        }
-        return testAccounts;
+        return new Account( Name = 'Test Account ' + counter );
     }
 }
 ```
