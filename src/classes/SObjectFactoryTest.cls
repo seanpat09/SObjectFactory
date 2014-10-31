@@ -3,14 +3,9 @@ private class SObjectFactoryTest
 {
     private class SObjectFactoryMock extends SObjectFactory
     {
-        private List<SObject> buildRecords( Integer numRecords )
+        public SObject buildRecordWithData()
         {
-            List<Account> testAccounts = new List<Account>();
-            for( Integer i = 0; i < numRecords; i++ )
-            {
-                testAccounts.add( new Account( Name = 'Account ' +i ) );
-            }
-            return testAccounts;
+            return new Account( Name = 'Account ' + counter );
         }
     }
 

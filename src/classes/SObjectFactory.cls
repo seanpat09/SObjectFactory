@@ -1,5 +1,19 @@
 public abstract class SObjectFactory
 {
+    protected Integer counter
+    {
+        get
+        {
+            if (counter == null)
+            {
+                counter = 0;
+            }
+            counter++;
+            return counter;
+        }
+        private set;
+    }
+
     public SObject buildRecord()
     {
         return buildRecords(1)[0];
@@ -16,5 +30,15 @@ public abstract class SObjectFactory
         insert records;
         return records;
     }
-    abstract List<SObject> buildRecords( Integer numRecords );
+    public List<SObject> buildRecords( Integer numRecords )
+    {
+        List<SObject> records = new List<SObject>();
+        for( Integer i = 0; i < numRecords; i++ )
+        {
+            records.add( buildRecordWithData() );
+        }
+        return records;
+    }
+
+    abstract SObject buildRecordWithData();
 }
