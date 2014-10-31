@@ -44,7 +44,7 @@ public class AccountFactory extends SObjectFactory
         List<Account> testAccounts = new List<Account>();
         for( Integer i = 0; i < numRecords; i++ )
         {
-            testAccounts.add( new Account( LastName = 'Test Account ' + i ) );
+            testAccounts.add( new Account( Name = 'Test Account ' + i ) );
         }
         return testAccounts;
     }
