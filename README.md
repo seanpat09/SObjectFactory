@@ -32,8 +32,9 @@ public static List<Account> buildAndInsertAccounts( Integer numOfAccounts )
 }
 ```
 
-And I would create these methods for EVERY sObject I was creating in test classes. I abstracted out the common logic
-and now you only have to created one class and implement one method:
+And I would create these methods for EVERY sObject I was creating in test classes.
+
+I abstracted out the common logic and now you only have to create one class and implement one method:
 
 ```
 @isTest
