@@ -13,7 +13,19 @@ public abstract class SObjectFactory
         }
         private set;
     }
+    
+    protected Map<Schema.SObjectField, Object> fieldToValue;
 
+    public SObjectFactory()
+    {
+        fieldToValue = new Map<Schema.SObjectField, Object>();
+    }
+    
+    public void setFieldToValueMapping( Map<Schema.SObjectField, Object> fieldToValue )
+    {
+        this.fieldToValue = fieldToValue;
+    }
+    
     public SObject buildRecord()
     {
         return buildRecords(1)[0];
@@ -35,9 +47,20 @@ public abstract class SObjectFactory
         List<SObject> records = new List<SObject>();
         for( Integer i = 0; i < numRecords; i++ )
         {
-            records.add( buildRecordWithData() );
+            Sobject record = buildRecordWithData();
+            mergeFields( record );
+            records.add( record );
         }
         return records;
+    }
+    
+    private void mergeFields(SObject record)
+    {
+        if( fieldToValue == NULL ) return;
+        for( Schema.SObjectField field : fieldToValue.keySet() )
+        {
+            record.put( field, fieldToValue.get( field ) );
+        }
     }
 
     abstract SObject buildRecordWithData();
